@@ -1,4 +1,4 @@
-# react-meteor-hooks
+# react-meteor-method-hooks
 
 Simple hook to handle `Meteor.call` requests.
 
@@ -9,7 +9,7 @@ import React from 'react';
 import { useMeteorCall } from 'react-meteor-method-hooks';
 
 const MyComponent = () => {
-  
+
   const [
     calculateSomething, 
     calculateSomethingLoading, 
