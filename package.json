@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/kolyasya/react-meteor-hooks/issues"
   },
-  "homepage": "https://github.com/kolyasya/react-meteor-hooks#readme"
+  "homepage": "https://github.com/kolyasya/react-meteor-hooks#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
 }
