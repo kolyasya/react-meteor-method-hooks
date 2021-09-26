@@ -1,5 +1,5 @@
 {
-  "name": "react-meteor-hooks",
+  "name": "react-meteor-method-hooks",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kolyasya/react-meteor-hooks.git"
+    "url": "git+https://github.com/kolyasya/react-meteor-method-hooks.git"
   },
   "keywords": [
     "react",
@@ -18,9 +18,9 @@
   "author": "Nikolay",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kolyasya/react-meteor-hooks/issues"
+    "url": "https://github.com/kolyasya/react-meteor-method-hooks/issues"
   },
-  "homepage": "https://github.com/kolyasya/react-meteor-hooks#readme",
+  "homepage": "https://github.com/kolyasya/react-meteor-method-hooks#readme",
   "peerDependencies": {
     "react": ">=16.8.0"
   }
