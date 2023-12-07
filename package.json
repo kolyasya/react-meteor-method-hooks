@@ -1,15 +1,15 @@
 {
   "name": "react-meteor-method-hooks",
-  "version": "0.0.2-beta.1",
+  "version": "0.0.2-beta.2",
   "description": "",
-  "main": "./example/imports/ui/react-meteor-method-hooks/useMeteorCall.js",
-  "types": "./example/imports/ui/react-meteor-method-hooks/types.d.ts",
+  "main": "./src/useMeteorCall.js",
+  "types": "./src/types.d.ts",
   "files": [
-    "./example/imports/ui/react-meteor-method-hooks/useMeteorCall.js",
-    "./example/imports/ui/react-meteor-method-hooks/types.d.ts"
+    "./src/useMeteorCall.js",
+    "./src/types.d.ts"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "sh ./pre-publish.sh"
   },
   "repository": {
     "type": "git",
