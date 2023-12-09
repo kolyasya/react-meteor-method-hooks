@@ -13,6 +13,10 @@ export const App = () => {
     { param: 'This is param' },
     (error, result) => {
       console.log('methodWithResult callback', { error, result });
+    }, {
+      forceSyncCall: false,
+      logging: false,
+      suppressErrorLogging: false
     }
   );
 
@@ -23,6 +27,10 @@ export const App = () => {
     methodWithErrorResult,
   ] = useMeteorCall('methodWithError', {}, (error, result) => {
     console.log('methodWithError callback', { error, result });
+  }, {
+    forceSyncCall: true,
+    logging: true,
+    suppressErrorLogging: true
   });
 
   useEffect(() => {

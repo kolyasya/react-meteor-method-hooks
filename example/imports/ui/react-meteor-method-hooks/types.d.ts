@@ -1,7 +1,12 @@
 type UseMeteorCallHook = (
   name: string,
   params: object,
-  cb: (error: object | undefined, result: any) => void
+  cb: (error: object | undefined, result: any) => void,
+  hookParams?: {
+    forceSyncCall?: boolean;
+    logging?: boolean;
+    suppressErrorLogging?: boolean;
+  }
 ) => [
   methodHandler: () => Promise<any>,
   loading: boolean,
@@ -13,4 +18,4 @@ type UseMeteorCallHookInitialState = {
   loading: boolean;
   error: object | undefined;
   result: any;
-}
+};

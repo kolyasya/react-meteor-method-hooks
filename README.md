@@ -1,6 +1,8 @@
 # react-meteor-method-hooks
 
-Simple hook to handle `Meteor.call` requests.
+Updated to work with `Meteor.callAsync()` method.
+
+Simple hook to handle `Meteor.callAsync()` or `Meteor.call()` requests.
 
 Usage example:
 
@@ -11,13 +13,13 @@ import { useMeteorCall } from 'react-meteor-method-hooks';
 const MyComponent = () => {
 
   const [
-    calculateSomething, 
-    calculateSomethingLoading, 
-    calculateSomethingError, 
+    calculateSomething,
+    calculateSomethingLoading,
+    calculateSomethingError,
     calculateSomethingResult
   ] = useMeteorCall(
     'calculateSomethingMethodName',
-    {},
+    { methodParam: 'Test string' },
     (error, result) => {
       if (error) {
         alert(error.reason);
@@ -25,11 +27,20 @@ const MyComponent = () => {
         console.log(result);
       }
     },
+    {
+      // Forces to use Meteor.call() instead of Meteor.callAsync()
+      forceSyncCall: true,
+      // Adds some logging in console
+      logging: true,
+      // By default the package writes console.error for all incoming errors
+      // This behaviour can be disabled by the setting
+      suppressErrorLogging: true
+    }
   );
 
   return (
-    <button 
-      onClick={calculateSomething} 
+    <button
+      onClick={calculateSomething}
       disabled={calculateSomethingLoading}
     >
       Calculate
