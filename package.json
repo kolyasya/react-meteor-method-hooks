@@ -1,6 +1,6 @@
 {
   "name": "react-meteor-method-hooks",
-  "version": "0.0.2-beta.2",
+  "version": "0.0.2-beta.4",
   "description": "",
   "main": "./src/useMeteorCall.js",
   "types": "./src/types.d.ts",
@@ -9,7 +9,6 @@
     "./src/types.d.ts"
   ],
   "scripts": {
-    "prepublishOnly": "sh ./pre-publish.sh"
   },
   "repository": {
     "type": "git",
