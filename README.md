@@ -28,12 +28,14 @@ const MyComponent = () => {
       }
     },
     {
-      // Forces to use Meteor.call() instead of Meteor.callAsync()
+      /** Forces to use Meteor.call() instead of Meteor.callAsync() */
       forceSyncCall: true,
-      // Adds some logging in console
+      /** Adds some logging in console */
       logging: true,
-      // By default the package writes console.error for all incoming errors
-      // This behaviour can be disabled by the setting
+      /**
+       * By default the package logs console.error for all incoming errors
+       * The setting disables such logs
+       */
       suppressErrorLogging: true
     }
   );
