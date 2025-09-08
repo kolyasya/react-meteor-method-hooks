@@ -27,6 +27,12 @@ export const useMeteorCall = (
   } = {},
   ...params
 ) => {
+
+
+  const [loading, setLoading] = useState(initialState.loading);
+  const [error, setError] = useState(initialState.error);
+  const [result, setResult] = useState(initialState.result);
+  
   if (!Meteor) {
     return console.error(
       `This package only works in Meteor environment. Check https://www.meteor.com/`
@@ -37,10 +43,7 @@ export const useMeteorCall = (
     console.error('Name is required to call Meteor method');
   }
 
-  const [loading, setLoading] = useState(initialState.loading);
-  const [error, setError] = useState(initialState.error);
-  const [result, setResult] = useState(initialState.result);
-
+  
   const methodHandler = useCallback(
     async (...customParams) => {
       setLoading(true);
@@ -104,6 +107,10 @@ export const useMeteorCall = (
 
           if (!suppressErrorLogging) {
             console.error(error);
+          }
+
+          if (typeof cb === 'function') {
+            cb(error, result);
           }
 
           setError(error);
