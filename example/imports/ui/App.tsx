@@ -36,7 +36,7 @@ export const App = () => {
       console.log('methodWithError callback', { error, result });
     },
     forceSyncCall: false,
-    logging: false,
+    logging: true,
     suppressErrorLogging: false,
   });
 

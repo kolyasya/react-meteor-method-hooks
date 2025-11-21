@@ -12,10 +12,10 @@ const initialState = {
  * @param {string} MethodName
  * @param {import('./types').UseMeteorCallHookConfig} UseMeteorCallHookConfig
  * @param {...any[]} MethodParams
- * 
+ *
  * @returns {import('./types').UseMeteorCallHookResult}
  **/
-export const useMeteorCall = (
+const useMeteorCall = (
   name,
   {
     cb,
@@ -27,12 +27,6 @@ export const useMeteorCall = (
   } = {},
   ...params
 ) => {
-
-
-  const [loading, setLoading] = useState(initialState.loading);
-  const [error, setError] = useState(initialState.error);
-  const [result, setResult] = useState(initialState.result);
-  
   if (!Meteor) {
     return console.error(
       `This package only works in Meteor environment. Check https://www.meteor.com/`
@@ -43,7 +37,10 @@ export const useMeteorCall = (
     console.error('Name is required to call Meteor method');
   }
 
-  
+  const [loading, setLoading] = useState(initialState.loading);
+  const [error, setError] = useState(initialState.error);
+  const [result, setResult] = useState(initialState.result);
+
   const methodHandler = useCallback(
     async (...customParams) => {
       setLoading(true);
@@ -97,7 +94,7 @@ export const useMeteorCall = (
 
           if (typeof cb === 'function') {
             logging && console.log(`Method ${name} running a callback...`);
-            cb(error, result);
+            cb(undefined, result);
           }
         } catch (error) {
           if (logging) {
@@ -109,11 +106,12 @@ export const useMeteorCall = (
             console.error(error);
           }
 
-          if (typeof cb === 'function') {
-            cb(error, result);
-          }
-
           setError(error);
+
+          if (typeof cb === 'function') {
+            logging && console.log(`Method ${name} running a callback...`);
+            cb(error, undefined);
+          }
         }
       }
       // Meteor 2.x
@@ -164,3 +162,5 @@ export const useMeteorCall = (
 
   return [methodHandler, loading, error, result];
 };
+
+export { useMeteorCall };

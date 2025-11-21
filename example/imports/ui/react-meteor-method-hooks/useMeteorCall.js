@@ -12,7 +12,7 @@ const initialState = {
  * @param {string} MethodName
  * @param {import('./types').UseMeteorCallHookConfig} UseMeteorCallHookConfig
  * @param {...any[]} MethodParams
- * 
+ *
  * @returns {import('./types').UseMeteorCallHookResult}
  **/
 const useMeteorCall = (
@@ -94,7 +94,7 @@ const useMeteorCall = (
 
           if (typeof cb === 'function') {
             logging && console.log(`Method ${name} running a callback...`);
-            cb(error, result);
+            cb(undefined, result);
           }
         } catch (error) {
           if (logging) {
@@ -107,6 +107,11 @@ const useMeteorCall = (
           }
 
           setError(error);
+
+          if (typeof cb === 'function') {
+            logging && console.log(`Method ${name} running a callback...`);
+            cb(error, undefined);
+          }
         }
       }
       // Meteor 2.x
