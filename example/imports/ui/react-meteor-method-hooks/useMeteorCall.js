@@ -84,7 +84,6 @@ const useMeteorCall = (
           }
 
           const result = await Meteor.callAsync(name, ...paramsToUse);
-          setLoading(false);
           setResult(result);
 
           if (logging) {
@@ -112,6 +111,8 @@ const useMeteorCall = (
             logging && console.log(`Method ${name} running a callback...`);
             cb(error, undefined);
           }
+        } finally {
+          setLoading(false);
         }
       }
       // Meteor 2.x
