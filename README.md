@@ -1,6 +1,8 @@
 # react-meteor-method-hooks
 
-Simple hook to handle `Meteor.call` requests.
+Updated to work with `Meteor.callAsync()` method.
+
+Simple hook to handle `Meteor.callAsync()` or `Meteor.call()` requests.
 
 Usage example:
 
@@ -11,25 +13,51 @@ import { useMeteorCall } from 'react-meteor-method-hooks';
 const MyComponent = () => {
 
   const [
-    calculateSomething, 
-    calculateSomethingLoading, 
-    calculateSomethingError, 
+    calculateSomething,
+    calculateSomethingLoading,
+    calculateSomethingError,
     calculateSomethingResult
   ] = useMeteorCall(
     'calculateSomethingMethodName',
-    {},
-    (error, result) => {
-      if (error) {
-        alert(error.reason);
-      } else {
-        console.log(result);
-      }
+    {
+      /** Callback to be executed after the method is called */
+      cb: (error, result) => {
+        if (error) {
+          alert(error.reason);
+        } else {
+          console.log(result);
+        }
+      },
+
+      /** Validate params before handler execution */
+      validate: (...params) => {
+        const param = params[0];
+
+        return param.methodParam === 'Test string';
+      },
+      /** Transform params after validation before handler execution */
+      transform: (...params) => {
+        const param = params[0];
+
+        return [{ ...param, methodParam: 'Transformed string' }];
+      },
+
+      /** Forces to use Meteor.call() instead of Meteor.callAsync() */
+      forceSyncCall: true,
+      /** Adds some logging in console */
+      logging: true,
+      /**
+       * By default the package logs console.error for all incoming errors
+       * The setting disables such logs
+       */
+      suppressErrorLogging: true
     },
+    { methodParam: 'Test string' },
   );
 
   return (
-    <button 
-      onClick={calculateSomething} 
+    <button
+      onClick={calculateSomething}
       disabled={calculateSomethingLoading}
     >
       Calculate
